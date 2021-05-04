@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\TestController;
 use \App\Http\Controllers\PostController;
@@ -26,6 +27,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'post'], function () {
 
 });
 Route::resource('posts', PostController::class)->middleware('auth');
+
+Route::get('file-upload', [FileController::class, 'fileUpload']);
+Route::get('download/{id}', [FileController::class, 'download']);
+Route::post('file-upload', [FileController::class, 'upload'])->name('fileUpload');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -9,7 +9,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('user_id', auth()->user()->id)->paginate(5);
+        $user = auth()->user();
+        $posts = $user->posts()->paginate(5);
 
         return view('posts.index', [
             'posts' => $posts
