@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/run-job', [TestController::class, 'runJob']);
+Route::get('/testing', [TestController::class, 'register']);
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'post'], function () {
     Route::get('test', [TestController::class, 'index'])->middleware('addLog');
 
